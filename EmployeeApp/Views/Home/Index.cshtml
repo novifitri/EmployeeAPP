@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Pencatatan Absensi Sederhana</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="list-group">
+        <a  class="list-group-item" asp-controller="Divisi" asp-action="Index">Manage Divisi</a>
+        <a  class="list-group-item" asp-controller="Karyawan" asp-action="Index">Manage Karyawan</a>
+        <a  class="list-group-item" asp-controller="Profile" asp-action="Index">Manage Profile</a>
+        <a  class="list-group-item" asp-controller="Absensi" asp-action="Index">Manage Absensi</a>
+    </div>
+</div>
