@@ -1,4 +1,5 @@
-﻿using EmployeeApp.Context;
+﻿using API.Repositories.Data;
+using EmployeeApp.Context;
 using EmployeeApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,22 +15,22 @@ namespace API.Controllers
     [ApiController]
     public class ProfileController : ControllerBase
     {
-        MyContext myContext;
+        ProfileRepository profileRepository;
 
-        public ProfileController(MyContext myContext)
+        public ProfileController(ProfileRepository profileRepository)
         {
-            this.myContext = myContext;
+            this.profileRepository = profileRepository;
         }
         [HttpGet]
         public IActionResult Get()
         {
-            var data = myContext.Profile.Include(x => x.Karyawan).ToList();
+            var data = profileRepository.Get();
             return Ok(new { message = "data semua profile karyawan", statusCode = 200, data = data });
         }
         [HttpGet("{Id}")]
         public IActionResult Get(int id)
         {
-            var data = myContext.Profile.Include(x => x.Karyawan).FirstOrDefault(x => x.Id == id);
+            var data = profileRepository.Get(id);
             if (data == null)
                 return NotFound(new { message = "profile tidak ditemukan", statusCode = 200 });
             return Ok(new { message = "detail profile", statudCode = 200, data = data });
@@ -38,16 +39,10 @@ namespace API.Controllers
         [HttpPut("{Id}")]
         public IActionResult Put(Profile profile)
         {
-            var data = myContext.Profile.Find(profile.Id);
-            if (data == null)
+            var result = profileRepository.Put(profile);
+            if (result == -1)
                 return NotFound(new { message = "profile tidak ditemukan", statusCode = 200 });
-            data.Username = profile.Username;
-            data.Email = profile.Email;
-            data.Password = profile.Password;
-            data.Karyawan_Id = profile.Karyawan_Id;
-            myContext.Profile.Update(data);
-            var result =  myContext.SaveChanges();
-            if (result > 0)
+            else if (result > 0)
                 return Ok(new { message = "profile berhasil diubah", statusCode = 200 });
             return BadRequest(new { statusCode = 400, message = "profile gagal diubah" });
 
@@ -58,8 +53,7 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                myContext.Profile.Add(profile);
-                var result = myContext.SaveChanges();
+                var result = profileRepository.Post(profile);
                 if (result > 0)
                     return Ok(new { message = "profile berhasil ditambah", statusCode = 200 });
             }
@@ -69,12 +63,10 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var data = myContext.Profile.Find(id);
-            if (data == null)
+            var result = profileRepository.Delete(id);
+            if (result == -1)
                 return NotFound(new { statusCode = 404, message = "Data tidak ditemukan" });
-            myContext.Profile.Remove(data);
-            var result = myContext.SaveChanges();
-            if (result > 0)
+            else if (result > 0)
             {
                 return Ok(new { message = "profile berhasil dihapus", statusCode = 200 });
             }

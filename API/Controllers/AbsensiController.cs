@@ -1,4 +1,5 @@
-﻿using EmployeeApp.Context;
+﻿using API.Repositories.Data;
+using EmployeeApp.Context;
 using EmployeeApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,23 +15,23 @@ namespace API.Controllers
     [ApiController]
     public class AbsensiController : ControllerBase
     {
-        MyContext myContext;
+        AbsensiRepository absensiRepository;
 
-        public AbsensiController(MyContext myContext)
+        public AbsensiController(AbsensiRepository absensiRepository)
         {
-            this.myContext = myContext;
+            this.absensiRepository = absensiRepository;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            var data = myContext.Absensi.Include(x => x.Karyawan).ThenInclude(x => x.Divisi).ToList();
+            var data = absensiRepository.Get();
             return Ok(new { message = "data semua absensi karyawan", statusCode = 200, data = data });
         }
         [HttpGet("{Id}")]
         public IActionResult Get(int id)
         {
-            var data = myContext.Absensi.Include(x => x.Karyawan).FirstOrDefault(x => x.Id == id);
+            var data = absensiRepository.Get(id);
             if (data == null)
                 return NotFound(new { message = "absensi tidak ditemukan", statusCode = 200 });
             return Ok(new { message = "detail absensi", statudCode = 200, data = data });
@@ -38,14 +39,10 @@ namespace API.Controllers
         [HttpPut("{Id}")]
         public IActionResult Put(Absensi absensi)
         {
-            var data = myContext.Absensi.Find(absensi.Id);
-            if (data == null)
+            var result = absensiRepository.Put(absensi);
+            if (result == -1)
                 return NotFound(new { message = "absensi tidak ditemukan", statusCode = 200 });
-            data.Karyawan_Id = absensi.Karyawan_Id;
-            data.Tanggal_Hadir = absensi.Tanggal_Hadir;
-            myContext.Absensi.Update(data);
-            var result = myContext.SaveChanges();
-            if (result > 0)
+            else if (result > 0)
                 return Ok(new { message = "absensi berhasil diubah", statusCode = 200 });
             return BadRequest(new { statusCode = 400, message = "absensi gagal diubah" });
         }
@@ -55,8 +52,7 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                myContext.Absensi.Add(absensi);      
-                var result = myContext.SaveChanges();
+                var result = absensiRepository.Post(absensi);
                 if (result > 0)
                     return Ok(new { message = "absensi berhasil ditambah", statusCode = 200 });
             }
@@ -68,12 +64,10 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var data = myContext.Absensi.Find(id);
-            if (data == null)
+            var result = absensiRepository.Delete(id);
+            if (result == -1)
                 return NotFound(new { statusCode = 404, message = "Data tidak ditemukan" });
-            myContext.Absensi.Remove(data);
-            var result = myContext.SaveChanges();
-            if (result > 0)
+            else if (result > 0)
             {
                 return Ok(new { message = "absensi berhasil dihapus", statusCode = 200 });
             }

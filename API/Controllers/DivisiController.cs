@@ -1,4 +1,5 @@
-﻿using EmployeeApp.Context;
+﻿using API.Repositories.Data;
+using EmployeeApp.Context;
 using EmployeeApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,24 +14,24 @@ namespace API.Controllers
     [ApiController]
     public class DivisiController : ControllerBase
     {
-        MyContext myContext;
+        DivisiRepository divisiRepository;
 
-        public DivisiController(MyContext myContext)
+        public DivisiController(DivisiRepository divisiRepository)
         {
-            this.myContext = myContext;
+            this.divisiRepository = divisiRepository;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            var data = myContext.Divisi.ToList();
+            var data = divisiRepository.Get();
             return Ok(new { message = "data semua divisi", statudCode = 200, data = data });
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var data = myContext.Divisi.Find(id);
+            var data = divisiRepository.Get(id);
             if (data == null)
                 return NotFound(new { statusCode = 404, message = "Data tidak ditemukan" });
             return Ok(new { message = "detail divisi", statudCode = 200, data = data });
@@ -41,8 +42,7 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                myContext.Divisi.Add(divisi);
-                var result = myContext.SaveChanges();
+                var result = divisiRepository.Post(divisi);
                 if (result > 0)
                     return Ok(new { message = "divisi berhasil ditambah", statusCode = 200 });
             }
@@ -52,13 +52,10 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(Divisi divisi)
         {
-            var divisiToUpdate = myContext.Divisi.Find(divisi.Id);
-            if(divisiToUpdate == null)
+            var result = divisiRepository.Put(divisi);
+            if(result == -1)
                 return NotFound(new { statusCode = 404, message = "Data tidak ditemukan" });
-            divisiToUpdate.Nama = divisi.Nama;
-            myContext.Divisi.Update(divisiToUpdate);
-            var result = myContext.SaveChanges();
-            if (result > 0)
+            else if (result > 0)
             {
                 return Ok(new { message = "divisi berhasil diubah", statusCode = 200 });
             }
@@ -68,11 +65,10 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var data = myContext.Divisi.Find(id);
-            if (data == null)
+            var result = divisiRepository.Delete(id);
+   
+            if(result == -1)
                 return NotFound(new { statusCode = 404, message = "Data tidak ditemukan" });
-            myContext.Divisi.Remove(data);
-            var result = myContext.SaveChanges();
             if (result > 0)
             {
                 return Ok(new { message = "divisi berhasil dihapus", statusCode = 200 });

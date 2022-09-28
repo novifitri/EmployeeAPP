@@ -1,4 +1,5 @@
-﻿using EmployeeApp.Context;
+﻿using API.Repositories.Data;
+using EmployeeApp.Context;
 using EmployeeApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,17 +15,17 @@ namespace API.Controllers
     [ApiController]
     public class KaryawanController : ControllerBase
     {
-        MyContext myContext;
+        KaryawanRepository karyawanRepository;
 
-        public KaryawanController(MyContext myContext)
+        public KaryawanController(KaryawanRepository karyawanRepository)
         {
-            this.myContext = myContext;
+            this.karyawanRepository = karyawanRepository;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            var data = myContext.Karyawan.Include(x => x.Divisi).ToList();
+            var data = karyawanRepository.Get();
             return Ok(new { message = "data semua karyawan", statusCode = 200, data = data });
         }
 
@@ -32,7 +33,7 @@ namespace API.Controllers
         [HttpGet("{Id}")]
         public IActionResult Get(int id)
         {
-            var data = myContext.Karyawan.Include(x=> x.Divisi).FirstOrDefault(x => x.Id == id);
+            var data = karyawanRepository.Get(id);
             if(data == null)
                 return NotFound(new { message = "karyawan tidak ditemukan", statusCode = 200 });
             return Ok(new { message = "detail karyawan", statudCode = 200, data = data });
@@ -41,19 +42,10 @@ namespace API.Controllers
         [HttpPut("{Id}")]
         public IActionResult Put(Karyawan karyawan)
         {
-            var data = myContext.Karyawan.Find(karyawan.Id);
-            if (data == null)
+            var result = karyawanRepository.Put(karyawan);
+            if (result == -1)
                 return NotFound(new { message = "karyawan tidak ditemukan", statusCode = 200 });
-            data.Nama = karyawan.Nama;
-            data.NIK = karyawan.NIK;
-            data.Tanggal_Lahir = karyawan.Tanggal_Lahir;
-            data.Jenis_Kelamin = karyawan.Jenis_Kelamin;
-            data.Alamat = karyawan.Alamat;
-            data.Nomor_Telp = karyawan.Nomor_Telp;
-            data.Divisi_Id = karyawan.Divisi_Id;
-            myContext.Karyawan.Update(data);
-            var result = myContext.SaveChanges();
-            if (result > 0)
+            else if (result > 0)
                 return Ok(new { message = "karyawan berhasil diubah", statusCode = 200 });  
             return BadRequest(new { statusCode = 400, message = "karyawan gagal diubah" });
         }
@@ -64,8 +56,7 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                myContext.Karyawan.Add(karyawan);
-                var result = myContext.SaveChanges();
+                var result = karyawanRepository.Post(karyawan);
                 if (result > 0)
                     return Ok(new { message = "karyawan berhasil ditambah", statusCode = 200 });
             }
@@ -75,11 +66,9 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var data = myContext.Karyawan.Find(id);
-            if (data == null)
+            var result = karyawanRepository.Delete(id);
+            if (result == -1)
                 return NotFound(new { statusCode = 404, message = "Data tidak ditemukan" });
-            myContext.Karyawan.Remove(data);
-            var result = myContext.SaveChanges();
             if (result > 0)
             {
                 return Ok(new { message = "karyawan berhasil dihapus", statusCode = 200 });

@@ -1,3 +1,4 @@
+using API.Repositories.Data;
 using EmployeeApp.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -50,6 +51,13 @@ namespace API
                     }
                 });
             });
+
+            #region Add Repositories
+            services.AddScoped<DivisiRepository>();
+            services.AddScoped<KaryawanRepository>();
+            services.AddScoped<ProfileRepository>();
+            services.AddScoped<AbsensiRepository>();
+            #endregion Add Repositories
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
