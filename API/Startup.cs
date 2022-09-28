@@ -1,5 +1,6 @@
+using API.Context;
 using API.Repositories.Data;
-using EmployeeApp.Context;
+using API.Repositories.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,7 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
             services.AddDbContext<MyContext>(option => option.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
             services.AddSwaggerGen(options =>
@@ -52,12 +54,13 @@ namespace API
                 });
             });
 
-            #region Add Repositories
+            #region Dependency Injection
             services.AddScoped<DivisiRepository>();
             services.AddScoped<KaryawanRepository>();
             services.AddScoped<ProfileRepository>();
             services.AddScoped<AbsensiRepository>();
-            #endregion Add Repositories
+            services.AddScoped<AccountRepository>();
+            # endregion Dependency Injection
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

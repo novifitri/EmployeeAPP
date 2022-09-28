@@ -1,6 +1,5 @@
-﻿using API.Repositories.Data;
-using EmployeeApp.Context;
-using EmployeeApp.Models;
+﻿using API.Models;
+using API.Repositories.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

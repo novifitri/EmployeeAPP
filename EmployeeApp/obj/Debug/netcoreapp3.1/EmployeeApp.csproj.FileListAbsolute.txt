@@ -171,3 +171,17 @@ D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\
 D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\obj\Debug\netcoreapp3.1\EmployeeApp.csproj.AssemblyReference.cache
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\obj\Debug\netcoreapp3.1\EmployeeApp.MvcApplicationPartsAssemblyInfo.cs
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\API.deps.json
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\API.runtimeconfig.json
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\API.runtimeconfig.dev.json
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\API.exe
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\API.dll
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\API.pdb
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\obj\Debug\netcoreapp3.1\Razor\Views\ErrorPage\Unauthorized.cshtml.g.cs
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\obj\Debug\netcoreapp3.1\Razor\Views\AdminPanel\Index.cshtml.g.cs

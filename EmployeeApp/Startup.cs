@@ -25,8 +25,14 @@ namespace EmployeeApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(); 
             services.AddDbContext<MyContext>(option => option.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
+            services.AddSession(option =>
+            {
+                option.IdleTimeout = TimeSpan.FromMinutes(5);
+                option.Cookie.HttpOnly = true;
+                option.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,8 +52,9 @@ namespace EmployeeApp
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
