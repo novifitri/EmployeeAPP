@@ -45,5 +45,67 @@ namespace EmployeeApp.Controllers
             ModelState.AddModelError(string.Empty, "Email dan password salah");
             return View();
         }
+
+        
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [Route("Register")]
+        public IActionResult RegisterAPI(RegisterVM register)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(register), Encoding.UTF8, "application/json");
+            var result = HttpClient.PostAsync(address+"Register", content).Result;
+            if (result.IsSuccessStatusCode)
+            {
+                return Redirect("Account/Login");
+            }
+            ModelState.AddModelError(string.Empty, "Registrasi gagal");
+            return View();
+        }
+
+        [HttpGet]
+        [Route("ForgetPassword")]
+        public IActionResult ForgetPW(RegisterVM register)
+        {        
+            return View();
+        }
+
+        [HttpPost]
+        [Route("ForgetPassword")]
+        public IActionResult ForgetPw(LoginVM login)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8, "application/json");
+            var result = HttpClient.PostAsync(address + "ForgetPassword", content).Result;
+            if (result.IsSuccessStatusCode)
+            {
+                return Redirect("Account/Login");
+            }
+            ModelState.AddModelError(string.Empty, "Ganti Password gagal");
+            return View();
+        }
+        [HttpGet]
+        [Route("ChangePassword")]
+        public IActionResult ChangePW(LoginVM login)
+        {
+            return View();
+        }
+        [HttpPost]
+        [Route("ChangePassword")]
+        public IActionResult ChangePW(ChangePasswordVM changePassword)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(changePassword), Encoding.UTF8, "application/json");
+            var result = HttpClient.PostAsync(address + "ChangePassword", content).Result;
+            if (result.IsSuccessStatusCode)
+            {
+                return Redirect("Account/Login");
+            }
+            ModelState.AddModelError(string.Empty, "Ganti Password gagal");
+            return View();
+        }
     }
 }

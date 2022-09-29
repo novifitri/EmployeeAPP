@@ -185,3 +185,7 @@ D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\
 D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\obj\Debug\netcoreapp3.1\Razor\Views\ErrorPage\Unauthorized.cshtml.g.cs
 D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\obj\Debug\netcoreapp3.1\Razor\Views\AdminPanel\Index.cshtml.g.cs
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\ForgetPW.cshtml.g.cs
+D:\belajar\C#\pertemuan 8 - asp.net core mvc perkenalan\EmployeeApp\EmployeeApp\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePW.cshtml.g.cs

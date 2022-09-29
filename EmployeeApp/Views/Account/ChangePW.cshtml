@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Change Passw0rd";
+}
+
+<h1>Change Passw0rd</h1>
+<form method="post" asp-action="ChangePW">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label class="control-label">Email</label>
+        <input name="email" type="email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Password Lama</label>
+        <input name="OldPassword" type="Password" class="form-control" />
+    </div>  
+    <div class="form-group">
+        <label class="control-label">Password Baru</label>
+        <input name="NewPassword" type="Password" class="form-control" />
+    </div>   
+    <div class="form-group">
+        <label class="control-label">Konfirmasi Password Baru</label>
+        <input name="ConfirmNewPassword" type="Password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>

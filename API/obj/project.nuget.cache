@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "vgOsqOU4nFQK8nRsPcQxZXTpQJBfRJGn3UiH8+08hTGwJXpPLPv0bqDZMjpIGO+UueBq1KfPHnlnDE3/NfO+Lg==",
+  "dgSpecHash": "MGmGuhuWih4+h5nO5I6xFHap16ED9GIslSoVZtH+u7O3BUzEAO3h6eKTzU5pPeaJzvJ6ymGISXOP/+eqbAlA7Q==",
   "success": true,
   "projectFilePath": "D:\\belajar\\C#\\pertemuan 8 - asp.net core mvc perkenalan\\EmployeeApp\\API\\API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\USER\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.0\\microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512",
